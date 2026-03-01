@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ledger | Professional Expense Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Ledger.</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-wallet"></i> Transactions</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div>
+                    <h1>Overview</h1>
+                    <p class="subtitle">Welcome back, here's your financial summary.</p>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">U</div>
+                </div>
+            </header>
+
+            <section class="summary-cards">
+                <div class="card balance-card">
+                    <h3>Total Balance</h3>
+                    <h2 id="total-balance">$0.00</h2>
+                </div>
+                <div class="card income-card">
+                    <div class="card-header">
+                        <h3>Income</h3>
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                    </div>
+                    <h2 id="total-income">$0.00</h2>
+                </div>
+                <div class="card expense-card">
+                    <div class="card-header">
+                        <h3>Expenses</h3>
+                        <i class="fa-solid fa-arrow-trend-down"></i>
+                    </div>
+                    <h2 id="total-expense">$0.00</h2>
+                </div>
+            </section>
+
+            <div class="dashboard-grid">
+                <section class="panel form-panel">
+                    <h3 class="panel-title">Add Transaction</h3>
+                    <form id="transaction-form">
+                        <input type="hidden" id="edit-id">
+                        
+                        <div class="form-group">
+                            <label>Type</label>
+                            <div class="type-toggle">
+                                <label class="radio-label">
+                                    <input type="radio" name="type" value="income" checked>
+                                    <span>Income</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="type" value="expense">
+                                    <span>Expense</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="amount">Amount ($)</label>
+                                <input type="number" id="amount" step="0.01" placeholder="0.00" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" id="date" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" required>
+                                <option value="Salary">Salary</option>
+                                <option value="Freelance">Freelance</option>
+                                <option value="Food">Food & Dining</option>
+                                <option value="Travel">Travel</option>
+                                <option value="Bills">Bills & Utilities</option>
+                                <option value="Shopping">Shopping</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="note">Note (Optional)</label>
+                            <input type="text" id="note" placeholder="What was this for?">
+                        </div>
+
+                        <button type="submit" class="btn-primary" id="submit-btn">Add Transaction</button>
+                    </form>
+                </section>
+
+                <section class="panel chart-panel">
+                    <h3 class="panel-title">Cash Flow</h3>
+                    <div class="chart-container">
+                        <canvas id="cashFlowChart"></canvas>
+                    </div>
+                </section>
+            </div>
+
+            <section class="panel table-panel">
+                <h3 class="panel-title">Recent Transactions</h3>
+                <div class="table-responsive">
+                    <table id="transaction-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transaction-list">
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
